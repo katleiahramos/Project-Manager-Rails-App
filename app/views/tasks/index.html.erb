@@ -1,10 +1,9 @@
 <!-- shows just the user's tasks  -->
+<% if @user %>
+  <h1>Welcome, <%= @user.username if @user%>  </h1>
 
-<h1>Welcome, <%= @user.username if @user%>  </h1>
-
-<h2>Here are your tasks:</h2>
-
-
+  <h2>Here are your tasks:</h2>
+<% end  %>
 
 <!-- Order tasks by due date -->
 <!-- filter by project -->
@@ -30,7 +29,3 @@
 
 
   <!-- link to create new task  -->
-
-
-  <!--  link to view all projects and tasks -->
-  <%= link_to "See all Projects/Tasks", projects_path %>
