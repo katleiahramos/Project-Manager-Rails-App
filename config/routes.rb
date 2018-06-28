@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :sessions
   resources :users, only: [:show]
-  resources :projects, only: [:index]
+  resources :projects, only: [:index, :show]
 end
