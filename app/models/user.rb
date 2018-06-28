@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
-  
 
-  validates :username, :password, :email, presence: true
+  has_many :tasks
+  has_many :projects, through: :tasks
+
+
+  #validates :username, :password, :email, presence: true
 end
