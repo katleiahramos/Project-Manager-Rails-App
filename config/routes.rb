@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   root "static#welcome"
 
   resources :sessions
-  resources :users, only: [:show]
+  resources :users, only: [:show, :new, :create]
   resources :projects, only: [:index, :show]
 end
