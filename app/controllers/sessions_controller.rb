@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       #when user signs in they will see just their tasks and projects
-      redirect_to user_path(@user)
+      redirect_to user_projects_path(@user)
     else
       #redirect to sign in page if authentificatin does not work
 

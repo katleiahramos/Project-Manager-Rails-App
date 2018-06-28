@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   root "static#welcome"
 
   resources :sessions
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create] do
+    resources :projects, only: [:index, :show]
+  end
+
   resources :projects, only: [:index, :show]
 
   get '/signout', to: 'sessions#destroy'
