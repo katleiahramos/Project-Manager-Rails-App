@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
 
 def welcome
-end 
+  render layout: false
+end
 end

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users, only: [:show, :new, :create]
   resources :projects, only: [:index, :show]
+
+  get '/signout', to: 'sessions#destroy'
 end
