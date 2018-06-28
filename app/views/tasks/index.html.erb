@@ -1,0 +1,36 @@
+<!-- shows just the user's tasks  -->
+
+<h1>Welcome, <%= @user.username if @user%>  </h1>
+
+<h2>Here are your tasks:</h2>
+
+
+
+<!-- Order tasks by due date -->
+<!-- filter by project -->
+
+<!-- turn this into a table  -->
+
+<table style="width:100%">
+  <tr>
+    <th>Task</th>
+    <th>Due Date </th>
+    <th>Complete?<th>
+  </tr>
+
+  <% @tasks.all.each do |task| %>
+  <tr>
+    <td><%= task.description %></td>
+    <td> <%= task.due_date  %> </td>
+    <td> <%# link to complete task button %> </td>
+  </tr>
+  <% end  %>
+
+</table>
+
+
+  <!-- link to create new task  -->
+
+
+  <!--  link to view all projects and tasks -->
+  <%= link_to "See all Projects/Tasks", projects_path %>
