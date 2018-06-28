@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-  end 
+    @user = User.find_by(params[:id])
+    @tasks = @user.tasks
+  end
 end

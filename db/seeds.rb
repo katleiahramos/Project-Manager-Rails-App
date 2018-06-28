@@ -8,3 +8,6 @@
 
 
 kat = User.create(username: "kat", password: "password", email: "email")
+rails = Project.create(name: "rails")
+task = Task.create(description: "complete show page", user_id: kat.id, project_id: rails.id)
+task2 = Task.create(description: "show multiple tasks", user_id: kat.id, project_id: rails.id)
