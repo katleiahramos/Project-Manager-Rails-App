@@ -6,6 +6,7 @@
 
 
 <!-- Order tasks by due date -->
+<!-- filter by project -->
 <ul>
   <% @tasks.all.each do |task| %>
 
@@ -14,4 +15,6 @@
 </ul>
 
   <!-- link to create new task  -->
+
   <!--  link to view all projects and tasks -->
+  <%= link_to "See all Projects/Tasks", projects_path %>
