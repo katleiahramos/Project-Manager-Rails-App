@@ -10,12 +10,12 @@ Specs:
   user has many projects through tasks, projects have many users through tasks
 - [x] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity)
   tasks have a due_date and completed attribute, plus a description
-- [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
+- [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
   user -> username and password presence true
   project -> name presence true
-  task -> due date and description presence true 
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-  this could be over_due tasks, or completed tasks?
+  task -> due date and description presence true, custom validation of due date cannot be in the past
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+  Task model has -> over_due and completed scope methods 
 - [x] Include signup (how e.g. Devise)
   user#new
 - [x] Include login (how e.g. Devise)
