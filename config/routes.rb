@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy'
 
   get '/tasks/:id/complete', to: "tasks#complete"
+
+  get 'tasks/:id/delete', to: "tasks#delete"
 end

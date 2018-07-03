@@ -18,7 +18,7 @@ cli = Project.create(name: "CLI")
 
 
 #Tasks
-task = Task.create(description: "complete show page", user_id: kat.id, project_id: rails.id)
+task = Task.create(description: "complete show page",user_id: kat.id, project_id: rails.id)
 task2 = Task.create(description: "show multiple tasks", user_id: kat.id, project_id: rails.id)
 task3 = Task.create(description: "Create command line design", user_id: skylar.id, project_id: cli.id)
 task4 = Task.create(description: "make tic-tac-toe", user_id: travis.id, project_id: ruby.id)
