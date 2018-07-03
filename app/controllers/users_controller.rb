@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def new
 
     @user = User.new
-    render layout: false 
+    render layout: false
   end
 
   def create
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
 
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to user_tasks_path(@user)
     else
       render :new, layout: false
     end
