@@ -38,6 +38,12 @@ class TasksController < ApplicationController
 
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.update(completed: true)
+    redirect_to user_tasks_path(current_user)
+  end
+
 
   private
 

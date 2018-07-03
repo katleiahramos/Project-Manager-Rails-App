@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root "static#welcome"
 
   resources :sessions
-  
+
   resources :users, only: [:show, :new, :create] do
     resources :tasks, only: [:index, :show]
   end
@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
 
   get '/signout', to: 'sessions#destroy'
+
+  get '/tasks/:id/complete', to: "tasks#complete"
 end
