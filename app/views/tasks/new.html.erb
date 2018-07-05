@@ -31,6 +31,11 @@
     <%= f.collection_select :project_id, Project.all, :id, :name %>
   </div>
 
+ 
+
+
+
+
   <% if @user %>
      <%= f.hidden_field :user_id  %>
   <% else  %>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :show, :new]
   end
 
-  resources :projects, only: [:index, :show]
+  resources :projects, only: [:index, :show, :new, :create]
 
   resources :tasks
 

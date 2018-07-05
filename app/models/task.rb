@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
   belongs_to :project
+  
 
   validates :description, :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
