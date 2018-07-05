@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     #regular sign in
 
       @user = User.find_by(email: params[:user][:email])
-      binding.pry
+      
       #authenticate pw
       if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
