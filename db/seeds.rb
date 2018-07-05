@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Users
-kat = User.create(username: "Kat", password: "password")
-skylar = User.create(username: "Skylar", password: "password")
-travis = User.create(username: "Travis", password: "password")
+kat = User.create(email: "Kat@home.com", password: "password")
+skylar = User.create(email: "Skylar@home.com", password: "password")
+travis = User.create(email: "Travis@home.com", password: "password")
 
 #Projects
 rails = Project.create(name: "rails")
