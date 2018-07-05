@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     
     if @task.save
-       redirect_to user_tasks_path(current_user)
+       redirect_to projects_path
     else
       render :new
     end
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
 
-      redirect_to redirect_to user_tasks_path(current_user)
+      redirect_to projects_path
     else
       render :edit
     end
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     @task.update(completed: true)
-    redirect_to user_tasks_path(current_user)
+    redirect_to projects_path
   end
 
   def delete
