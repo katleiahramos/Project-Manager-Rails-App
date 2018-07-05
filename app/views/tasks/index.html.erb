@@ -50,7 +50,7 @@
   </tr>
 
   <% @tasks.all.each do |task| %>
-  <% if !task.completed %>
+  <% if task.completed %>
     <tr>
       <td><%= task.description %></td>
       <td> <%= task.due_date.strftime("%B %d, %Y") unless task.due_date.nil?  %> </td>
