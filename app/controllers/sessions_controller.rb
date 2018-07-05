@@ -5,20 +5,19 @@ class SessionsController < ApplicationController
 
   def create
 
-    if auth
+    if auth_hash
       #user signed in with omniauth
-      @user = User.find_or_create_by(email: auth['email']) do |u|
-         #u.name = auth['info']['name']
-         u.email = auth['info']['email']
-         #u.image = auth['info']['image']
-       end
-
+      @user = User.find_or_create_by_omniauth(auth_hash)
+    
+      session[:user_id] = @user.id
+      #when user signs in they will see just their tasks and projects
+      redirect_to user_tasks_path(@user)
 
     else
     #regular sign in
 
       @user = User.find_by(email: params[:user][:email])
-      
+
       #authenticate pw
       if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
@@ -39,7 +38,9 @@ class SessionsController < ApplicationController
 
   private
 
-  def auth
+  def auth_hash
+
     request.env['omniauth.auth']
   end
+
 end
