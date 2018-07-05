@@ -5,6 +5,6 @@ class User < ApplicationRecord
   has_many :projects, through: :tasks
 
 
-  validates :username, :password, presence: true
-  validates :username, uniqueness: true 
+  validates :email, :password, presence: true
+  validates :email, uniqueness: true
 end
