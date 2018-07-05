@@ -15,7 +15,7 @@ Specs:
   project -> name presence true
   task -> due date and description presence true, custom validation of due date cannot be in the past
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-  Task model has -> over_due and completed scope methods 
+  Task model has -> over_due and completed scope methods
 - [x] Include signup (how e.g. Devise)
   user#new
 - [x] Include login (how e.g. Devise)
@@ -24,8 +24,9 @@ Specs:
   session#destroy
 - [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
-  user_tasks_path
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+    user_tasks_path
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+    users/1/tasks/new
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
