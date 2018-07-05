@@ -10,11 +10,22 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @task = Task.new(user_id: @user.id)
+
+    else
+      @user = nil
+      @task = Task.new
+    end
+
+
   end
 
   def create
+
     @task = Task.new(task_params)
+    binding.pry
     if @task.save
        redirect_to user_tasks_path(current_user)
     else

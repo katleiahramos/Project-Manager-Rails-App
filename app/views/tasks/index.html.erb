@@ -3,6 +3,8 @@
   <h1>Welcome, <%= @user.username if @user%>  </h1>
 <br>
   <h2>Here are your tasks:</h2><br>
+  <%= link_to "Give yourslf a new task!", new_user_task_path(@user) %>
+  <br><br>
 <% end  %>
 
 <!-- Order tasks by due date -->

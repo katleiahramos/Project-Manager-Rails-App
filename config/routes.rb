@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :users, only: [:show, :new, :create] do
-    resources :tasks, only: [:index, :show]
+    resources :tasks, only: [:index, :show, :new]
   end
 
   resources :projects, only: [:index, :show]
