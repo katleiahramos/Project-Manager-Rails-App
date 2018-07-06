@@ -1,12 +1,14 @@
-<h1>Projects:</h1>
+<h1>Projects</h1>
 
-<ul>
+
   <% @projects.all.each do |project| %>
-    <li>  <%= link_to "#{project.name}", project_path(project)%></li>
+    <div class="container">
+
+
+    <h2>  <%= link_to "#{project.name}", project_path(project)%></h2>
 
     <% tasks = project.tasks %>
 
       <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks}%>
-
+    </div>
   <% end  %>
-</ul>

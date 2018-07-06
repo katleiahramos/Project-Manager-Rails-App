@@ -1,33 +1,9 @@
 
+<div class="container">
+<br><br>
+  <div class="center-block">
 
   <%= render 'projects/form',  :locals => {:@project => @project} %>
-
-
-<!-- <% if @project.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@project.errors.count, "error") %>
-      prohibited this post from being saved:
-    </h2>
-
-    <ul>
-    <% @project.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @project, controller: "projects", action: "create" do |f| %>
-  <div class="form-group">
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %>
   </div>
 
-
-
-  <div class="actions">
-    <%= f.submit "Create", class: "btn btn-primary" %>
-  </div>
-
-<% end  %> -->
+</div>

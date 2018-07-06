@@ -1,26 +1,30 @@
 
-<table style="width:100%">
-  <tr>
-    <th>Task</th>
-    <th>Project</th>
-    <th>Due Date </th>
-    <th>Assigned To</th>
-    <th>Edit/Delete</th>
-    <th>Complete<th>
-  </tr>
+  <table class = "table table-striped" >
+    <thead class = "thead-dark">
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Project</th>
+        <th scope="col">Due Date </th>
+        <th scope="col">Assigned To</th>
+        <th scope="col">Edit/Delete</th>
+        <th scope="col">Complete<th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <% @tasks.all.each do |task| %>
-  <% if !task.completed %>
-    <tr>
-      <td><%= task.description %></td>
-      <td> <%= task.project.name %> </td>
-      <td> <%= task.due_date.strftime("%B %d, %Y") unless task.due_date.nil?  %> </td>
-      <td> <%= task.user.username  %> </td>
-      <td> <%= link_to "Edit", edit_task_path(task) %> / <%=  link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }  %> </td>
-      <td> <a class="btn btn-outline-success" href="/tasks/<%= task.id %>/complete">Complete </a>  </td>
-    </tr>
-  <% end %>
 
-  <% end  %>
+    <% @tasks.all.each do |task| %>
+      <% if !task.completed %>
+        <tr scope="row">
+          <td><%= task.description %></td>
+          <td> <%= task.project.name %> </td>
+          <td> <%= task.due_date.strftime("%B %d, %Y") unless task.due_date.nil?  %> </td>
+          <td> <%= task.user.username  %> </td>
+          <td> <%= link_to "Edit", edit_task_path(task) %> / <%=  link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }  %> </td>
+          <td> <a class="btn btn-outline-success" href="/tasks/<%= task.id %>/complete">Complete </a>  </td>
+        </tr>
+      <% end %>
+    <% end  %>
+    </tbody>
 
-</table>
+  </table>

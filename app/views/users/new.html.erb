@@ -7,9 +7,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body >
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Project Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,26 +55,30 @@
   </div>
 <% end %>
 <br>
-<%= form_for @user, :url => url_for(controller: "users", action: "create") do |f| %>
+
+<div class="container">
+
+
+<%= form_for @user, :url => url_for(controller: "users", action: "create"), :html => {class: "form-signin"} do |f| %>
 
   <div class="form-group">
     <%= f.label :email, "E-mail" %>
-    <%= f.text_field :email%>
+    <%= f.text_field :email, class: "form-control"%>
   </div>
 
   <div class="form-group">
     <%= f.label :username, "Username" %>
-    <%= f.text_field :username%>
+    <%= f.text_field :username, class: "form-control"  %>
   </div>
 
   <div class="form-group">
     <%= f.label :password, "Password"%>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field  :password_confirmation %>
+    <%= f.password_field  :password_confirmation , class: "form-control"%>
   </div>
 
   <div class="actions">
@@ -79,3 +89,4 @@
 
   </body>
 </html>
+</div>
