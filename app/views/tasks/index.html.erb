@@ -8,31 +8,8 @@
 <% end  %>
 
 
-<%= render 'tasklist' %>
-<!--
-<table style="width:100%">
-  <tr>
-    <th>Task</th>
-    <th>Due Date </th>
-    <th>Assigned To</th>
-    <th>Edit/Delete</th>
-    <th>Complete<th>
-  </tr>
+<%= render 'tasklist', :locals => {:@tasks => @tasks} %>
 
-  <% @tasks.all.each do |task| %>
-  <% if !task.completed %>
-    <tr>
-      <td><%= task.description %></td>
-      <td> <%= task.due_date.strftime("%B %d, %Y") unless task.due_date.nil?  %> </td>
-      <td> <%= task.user.username  %> </td>
-      <td> <a class="btn btn-outline-success" href="<%= edit_task_path(task) %>">Edit </a> / <a class="btn btn-outline-success" href="/tasks/<%= task.id%>/delete">Delete </a> </td>
-      <td> <a class="btn btn-outline-success" href="/tasks/<%= task.id %>/complete">Complete </a>  </td>
-    </tr>
-  <% end %>
-
-  <% end  %>
-
-</table> -->
 
 
 <br><br>

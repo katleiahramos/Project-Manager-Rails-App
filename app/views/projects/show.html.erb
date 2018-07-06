@@ -1,7 +1,9 @@
 <h1>
 <%= @project.name %>
 </h1>
-
+<% tasks = @project.tasks %>
+<%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks}%>
+<!--
 <ul>
 <table>
   <tr>
@@ -13,7 +15,7 @@
   </tr>
 
   <% @project.tasks.each do |task| %>
-  
+
       <% if !task.completed%>
       <tr>
         <td><%= task.description %></td>
@@ -23,10 +25,10 @@
         <td> <a class="btn btn-outline-success" href="/tasks/<%= task.id %>/complete">Complete </a>  </td>
       </tr>
       <% end %>
-    
+
     </table>
   <% end %>
-  
-</ul>
+
+</ul> -->
 
 <!-- link back to all projects?  -->
