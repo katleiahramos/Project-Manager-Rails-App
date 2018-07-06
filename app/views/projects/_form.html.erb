@@ -1,9 +1,4 @@
-
-
-  <%= render 'projects/form',  :locals => {:@project => @project} %>
-
-
-<!-- <% if @project.errors.any? %>
+<% if @project.errors.any? %>
   <div id="error_explanation">
     <h2>
       <%= pluralize(@project.errors.count, "error") %>
@@ -18,7 +13,7 @@
   </div>
 <% end %>
 
-<%= form_for @project, controller: "projects", action: "create" do |f| %>
+<%= form_for @project do |f| %>
   <div class="form-group">
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
@@ -30,4 +25,4 @@
     <%= f.submit "Create", class: "btn btn-primary" %>
   </div>
 
-<% end  %> -->
+<% end  %>

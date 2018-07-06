@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :show, :new]
   end
 
-  resources :projects, only: [:index, :show, :new, :create]
+  resources :projects
 
   resources :tasks
 
@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   get 'tasks/:id/delete', to: "tasks#delete"
 
   get '/auth/facebook/callback' => 'sessions#create'
+
+  get 'projects/:id/delete', to: "projects#delete"
 end

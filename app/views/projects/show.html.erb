@@ -1,5 +1,8 @@
 <h1>
 <%= @project.name %>
 </h1>
+
+<%= link_to "Edit Project", edit_project_path(@project) %>
+<a class="btn btn-outline-success" href="/projects/<%= @project.id%>/delete">Delete </a> 
 <% tasks = @project.tasks %>
 <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks}%>
