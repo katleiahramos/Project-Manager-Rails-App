@@ -1,15 +1,4 @@
-<!-- shows just the user's tasks  -->
-<% if @user %>
-  <h1>Welcome, <%= @user.username if @user%>  </h1>
-<br>
-  <h2>Here are your tasks:</h2><br>
-  <%= link_to "Give yourself a new task!", new_user_task_path(@user) %>
-  <br><br>
-<% end  %>
 
-
-<%= render 'tasklist' %>
-<!--
 <table style="width:100%">
   <tr>
     <th>Task</th>
@@ -32,9 +21,9 @@
 
   <% end  %>
 
-</table> -->
+</table>
 
-
+<!--
 <br><br>
 <h2>Completed Tasks</h2>
 
@@ -60,4 +49,4 @@
 
   <% end  %>
 
-</table>
+</table> -->

@@ -3,7 +3,11 @@
 <ul>
   <% @projects.all.each do |project| %>
     <li>  <%= link_to "#{project.name}", project_path(project)%></li>
-      <table>
+
+    <% tasks = project.tasks %>
+
+      <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks}%>
+      <!-- <table>
           <tr>
             <th>Task</th>
             <th>Due Date </th>
@@ -22,6 +26,6 @@
               </tr>
             <% end %>
       <% end %>
-      </table>
+      </table> -->
   <% end  %>
 </ul>

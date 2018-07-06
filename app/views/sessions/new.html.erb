@@ -1,18 +1,21 @@
 
+<div class="container">
 
-<%= form_for @user, :url => url_for(controller: "sessions", action: "create") do |f| %>
-  <div class="form-group">
-    <%= f.label :email, "E-mail" %><br>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
+  <%= form_for @user, :url => url_for(controller: "sessions", action: "create") do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "E-mail" %><br>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-      <%= f.label :password, "Enter your Password" %><br>
-      <%= f.password_field :password, class: "form-control" %>
-  </div>
+    <div class="form-group">
+        <%= f.label :password, "Enter your Password" %><br>
+        <%= f.password_field :password, class: "form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign In", class: "btn btn-primary" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Sign In", class: "btn btn-primary" %>
+    </div>
 
-<% end  %>
+  <% end  %>
+
+</div>
