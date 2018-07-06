@@ -2,6 +2,7 @@
 <table style="width:100%">
   <tr>
     <th>Task</th>
+    <th>Project</th>
     <th>Due Date </th>
     <th>Assigned To</th>
     <th>Edit/Delete</th>
@@ -12,6 +13,7 @@
   <% if !task.completed %>
     <tr>
       <td><%= task.description %></td>
+      <td> <% task.project.name %> </td>
       <td> <%= task.due_date.strftime("%B %d, %Y") unless task.due_date.nil?  %> </td>
       <td> <%= task.user.username  %> </td>
       <td> <%= link_to "Edit", edit_task_path(task) %> / <%=  link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }  %> </td>

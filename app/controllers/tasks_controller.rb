@@ -58,7 +58,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to user_tasks_path(current_user)
+    redirect_to projects_path
 
   end
 
