@@ -26,5 +26,5 @@ Rails.application.routes.draw do
 
   get '/auth/facebook/callback' => 'sessions#create'
 
-  get 'projects/:id/delete', to: "projects#delete"
+  # get 'projects/:id/delete', to: "projects#delete"
 end

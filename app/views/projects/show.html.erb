@@ -3,6 +3,6 @@
 </h1>
 
 <%= link_to "Edit Project", edit_project_path(@project) %>
-<a class="btn btn-outline-success" href="/projects/<%= @project.id%>/delete">Delete </a> 
+<%=   link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' } %> 
 <% tasks = @project.tasks %>
 <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks}%>
