@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :require_login
-
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
   def index
       @projects = Project.all
   end
 
   def show
-    @project = Project.find_by(params[:id])
+  #  @project = Project.find(params[:id])
     @tasks = @project.tasks
   end
 
@@ -25,11 +25,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+  #  @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
+    #@project = Project.find(params[:id])
 
     if @project.update(project_params)
       redirect_to projects_path
@@ -45,6 +45,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require('project').permit(:name)
