@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :require_login
 
   def index
       @projects = Project.all
@@ -47,5 +48,9 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require('project').permit(:name)
+  end
+
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
   end
 end

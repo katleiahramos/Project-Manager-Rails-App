@@ -1,9 +1,17 @@
 class TasksController < ApplicationController
+  before_action :require_login
+
 
   def index
+
     if params[:user_id]
-      @user = User.find(params[:user_id])
-      @tasks = @user.tasks
+      if User.find(params[:user_id]) == current_user
+        @user = User.find(params[:user_id])
+        @tasks = @user.tasks
+      else
+        redirect_to projects_path
+        flash[:notice] = "Unauthorized Access."
+      end
     else
       @tasks = Task.all
     end
@@ -69,6 +77,9 @@ class TasksController < ApplicationController
     params.require(:task).permit(:due_date, :description, :user_id, :project_id)
   end
 
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
+  end
 
 
 end

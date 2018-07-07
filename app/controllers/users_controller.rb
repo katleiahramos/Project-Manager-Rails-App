@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
 
-
   def new
-
-    @user = User.new
-    render layout: false
+    if logged_in
+      redirect_to projects_path
+      flash[:notice] = "You are already logged in."
+    else
+      @user = User.new
+      render layout: false
+    end
   end
 
   def create
@@ -21,11 +24,11 @@ class UsersController < ApplicationController
 
   end
 
-  def show
-    @user = User.find_by(params[:id])
-
-    @tasks = @user.tasks
-  end
+  # def show
+  #   @user = User.find_by(params[:id])
+  #
+  #   @tasks = @user.tasks
+  # end
 
   private
 
