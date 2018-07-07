@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_login
-
+  before_action :set_task, only: [:edit, :update, :destroy, :complete]
 
   def index
 
@@ -42,11 +42,10 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    #@task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
 
     if @task.update(task_params)
 
@@ -58,20 +57,21 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task = Task.find(params[:id])
     @task.update(completed: true)
     redirect_to projects_path
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to projects_path
-
   end
 
 
   private
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:due_date, :description, :user_id, :project_id)
