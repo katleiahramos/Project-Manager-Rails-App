@@ -1,24 +1,19 @@
-# README
+# Project Manager App 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Raills app that helps you organize tasks and projects for you and your team. 
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+1. Clone this repo and run `bundle install`
+2. Run `rake db:migrate`
+3. Run `rake db:seed`
+4. Run `rails s`
+4. Open your browser to `localhost:3000`
 
-* System dependencies
+## Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/katleiahramos/Project-Manager-Rails-App
 
-* Database creation
+## License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The project is available as open source under the terms of the [MIT LICENSE](https://opensource.org/licenses/MIT)
