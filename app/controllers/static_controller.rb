@@ -5,6 +5,6 @@ def welcome
     redirect_to projects_path
     flash[:notice] = "You are already logged in."
   end
-  #render layout: false
+
 end
 end
