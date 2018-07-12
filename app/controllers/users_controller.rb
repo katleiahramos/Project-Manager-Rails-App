@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You are already logged in."
     else
       @user = User.new
-      render layout: false
+      render layout: 'sessions'
     end
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to projects_path
     else
-      render :new, layout: false
+      render :new, layout: 'sessions'
     end
 
   end
