@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-  root "static#welcome"
+  # root "static#welcome"
 
+  root 'home#index'
   resources :sessions
 
   resources :users, only: [:new, :create] do
