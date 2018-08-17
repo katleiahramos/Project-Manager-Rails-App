@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # root "static#welcome"
 
   root 'projects#index'
+
+  get '/projects/test', to: 'projects#test'
+  
   resources :sessions
 
   resources :users, only: [:new, :create] do

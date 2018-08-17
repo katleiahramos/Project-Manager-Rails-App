@@ -7,6 +7,9 @@ const attachListeners = function() {
   $('#testButton').on('click', () => testFunction())
 }
 
+
 const testFunction = function () {
-  debugger
+  $.get('/projects/test', function(){
+    debugger
+  })
 }

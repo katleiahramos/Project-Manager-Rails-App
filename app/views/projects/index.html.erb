@@ -14,10 +14,13 @@
 
           <h3> <%= project.name %> </h3>
           <% project.tasks.each do |task | %>
-            <div id="task" class="bg-light my-3 rounded">
+          <button type="button" class="btn btn-light my-2" data-id="<%= task.id %>" name="button"> <%= task.description %> </button><br>
+            <!-- <div id="task" class="bg-light my-3 rounded">
             <%= task.description %><br>
-            </div>
+            </div>-->
           <% end %>
+
+
         <!-- <% tasks = project.tasks %>
 
         <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks, :project => project}%> -->
