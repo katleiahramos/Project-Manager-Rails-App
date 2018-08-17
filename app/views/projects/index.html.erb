@@ -1,17 +1,25 @@
 <h1>Projects</h1>
 <a href="/users/most_projects"> Click here to see who has the most projects!</a>
 
-<div class="container-fluid">
+<div class="container mx-3">
   <div class="row">
 
 
   <% @projects.all.each do |project| %>
-        <div class="col-sm-4">
+        <div class="col-sm-4 mb-3 ">
+          <div class="col-md-12 bg-secondary pb-3 rounded">
 
 
-        <% tasks = project.tasks %>
+          <h3> <%= project.name %> </h3>
+          <% project.tasks.each do |task | %>
+            <div id="task" class="bg-light my-3 rounded">
+            <%= task.description %><br>
+            </div>
+          <% end %>
+        <!-- <% tasks = project.tasks %>
 
-        <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks, :project => project}%>
+        <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks, :project => project}%> -->
+          </div>
         </div>
   <% end  %>
 

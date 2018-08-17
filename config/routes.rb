@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # root "static#welcome"
 
-  root 'home#index'
+  root 'projects#index'
   resources :sessions
 
   resources :users, only: [:new, :create] do
