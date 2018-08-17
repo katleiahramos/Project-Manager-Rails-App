@@ -2,6 +2,11 @@ class TasksController < ApplicationController
   before_action :require_login
   before_action :set_task, only: [:edit, :update, :destroy, :complete]
 
+  def test
+    task = Task.find(params[:id])
+    render json: task
+  end
+
   def index
 
     if params[:user_id]

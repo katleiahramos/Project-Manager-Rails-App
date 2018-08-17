@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   root 'projects#index'
 
-  get '/projects/test', to: 'projects#test'
-  
+  get '/tasks/test', to: 'tasks#test'
+
   resources :sessions
 
   resources :users, only: [:new, :create] do
