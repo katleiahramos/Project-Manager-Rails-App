@@ -14,7 +14,11 @@
 
           <h3> <%= project.name %> </h3>
           <% project.tasks.each do |task | %>
-          <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button"> <%= task.description %> </button><br>
+          <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button"> <%= task.description %> </button>
+          <div id="task-<%= task.id %>">
+
+          </div>
+          <br>
             <!-- <div id="task" class="bg-light my-3 rounded">
             <%= task.description %><br>
             </div>-->
