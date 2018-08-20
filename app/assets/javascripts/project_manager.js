@@ -62,7 +62,8 @@ const newTask = function(projectId) {
 }
 
 
-const buttonizeTask = function() {
+const buttonizeTask = function(description, taskId) {
+  return   "<button type=" + '"button"' + " class=" + '"task-more btn btn-light my-2"' + " data-id=" + "'" +`${taskId}`+ "'" +" name=" + '"button" '+ " data-toggle=" + '"modal"' + " data-target=" + "'" + "#task-" + `${taskId}` + "'" + ">" + description +  "</button>"
 
 }
 
@@ -75,7 +76,9 @@ $(function() {
     $.post(url, values).success(function(response){
       const description = response.description;
       const projectId = response.project.id
-      $(`#project-${projectId}`).find(".tasks").append(description)
+      const taskId = response.id
+      const button = buttonizeTask(description, taskId)
+      $(`#project-${projectId}`).find(".tasks").append(button)
     })
   })
   // $("form").submit(function(event) {
