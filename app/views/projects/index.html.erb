@@ -1,28 +1,23 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
+<button class="btn btn-primary btn-lg custom-modal" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p> </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+
 
 <h1>Projects</h1>
 <!-- <a href="/users/most_projects"> Click here to see who has the most projects!</a> -->
@@ -38,14 +33,44 @@
 
           <h3> <%= project.name %> </h3>
           <% project.tasks.each do |task | %>
-          <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button"> <%= task.description %> </button>
-          <div id="task-<%= task.id %>">
 
-          </div>
-          <br>
+
+          <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" data-toggle="modal" data-target="#exampleModalCenter" > <%= task.description %> </button>
+
+          <!-- <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" > <%= task.description %> </button> -->
+
+
+          <!--  MODAL TEST -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="task-<%= task.id %>">
+                  <!-- <div id="task-<%= task.id %>">
+
+                  </div> -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>  <!-- END modal test -- >
+
+
+          <!-- <div id="task-<%= task.id %>">
+
+          </div> -->
+          <!-- <br> -->
             <!-- <div id="task" class="bg-light my-3 rounded">
             <%= task.description %><br>
-            </div>-->
+            </div> -->
           <% end %>
 
         <!-- <% tasks = project.tasks %>
@@ -62,9 +87,31 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $(".task-more").on("click", function(){
+
       const id = $(this).data("id");
       showTask(id);
     })
+  })
+
+  // $(function () {
+  //   $(".task-more").click(function(e){
+  //     e.preventDefault();
+  //     const mymodal = $(`#exampleModalCenter`);
+  //     mymodal.find('.modal-body').text('hello');
+  //     mymodal.modal('show');
+  //
+  //   })
+  // })
+
+  $(function(){
+    $('.custom-modal').click(function(e){
+      // e.preventDefault();
+      var mymodal = $('#myModal');
+
+      mymodal.find('.modal-body').text('hello');
+      // mymodal.modal('show');
+
+    });
   })
 
 
