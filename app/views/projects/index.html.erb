@@ -12,6 +12,10 @@
 
 
             <h3> <%= project.name %> </h3>
+
+            <div class="tasks">
+
+
             <% project.tasks.each do |task | %>
 
 
@@ -43,7 +47,7 @@
 
 
             <% end %>
-
+            </div>
             <div id="newTaskForm-<%= project.id %>" class="border">
 
 
@@ -52,6 +56,11 @@
                 <input type="submit">
               </form> -->
 
+              <%= form_for([project, Task.new]) do |f| %>
+              <%= f.text_area :description %>
+              <%= f.collection_select :user_id, User.all, :id, :username %>
+              <%= f.submit %>
+              <% end %>
             </div>
 
             <button type="button" class="new-task btn btn-primary" data-project-id="<%= project.id %>">Add Task</button>
@@ -78,15 +87,7 @@
     })
   })
 
-  // $(function() {
-  //   $("form").submit(function(event) {
-  //     event.preventDefault();
-  //     debugger
-  //     const values = $(this).serialize()
-  //
-  //   })
 
-  // })
 
 
 

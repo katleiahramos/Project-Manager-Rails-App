@@ -35,15 +35,21 @@ class TasksController < ApplicationController
 
   end
 
-  def create
-    binding.pry
-    @task = Task.new(task_params)
+  # def create
+  #   @task = Task.new(task_params)
+  #
+  #   if @task.save
+  #      redirect_to projects_path
+  #   else
+  #     render :new
+  #   end
+  # end
 
-    if @task.save
-       redirect_to projects_path
-    else
-      render :new
-    end
+  def create
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.build(task_params)
+    @task.save
+    render json: @task
   end
 
   def edit

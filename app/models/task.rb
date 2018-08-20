@@ -3,7 +3,8 @@ class Task < ApplicationRecord
   belongs_to :project
 
 
-  validates :description, :due_date, presence: true
+  # validates :description, :due_date, presence: true
+  validates :description, presence: true
   validate :due_date_cannot_be_in_the_past
 
   scope :completed_tasks, -> {where(completed: true)}
