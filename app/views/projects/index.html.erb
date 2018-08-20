@@ -59,7 +59,7 @@
               <%= form_for([project, Task.new]) do |f| %>
               <%= f.text_area :description %>
               <%= f.collection_select :user_id, User.all, :id, :username %>
-              <%= f.submit %>
+              <%= f.submit%>
               <% end %>
             </div>
 

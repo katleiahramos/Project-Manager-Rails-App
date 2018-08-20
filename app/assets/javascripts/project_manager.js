@@ -1,5 +1,7 @@
 $(document).ready(function() {
   attachListeners();
+
+
 });
 
 
@@ -74,11 +76,15 @@ $(function() {
     const values = $(this).serialize()
 
     $.post(url, values).success(function(response){
+
       const description = response.description;
       const projectId = response.project.id
       const taskId = response.id
-      const button = buttonizeTask(description, taskId)
-      $(`#project-${projectId}`).find(".tasks").append(button)
+      const button = buttonizeTask(description, taskId);
+      $(`#project-${projectId}`).find(".tasks").append(button);
+
+      $(`#project-${projectId}`).find("form").get(0).reset()
+      $(`#project-${projectId}`).find("form").find("input[type=submit]").removeAttr('disabled');
     })
   })
   // $("form").submit(function(event) {
