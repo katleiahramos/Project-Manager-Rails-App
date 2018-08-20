@@ -6,57 +6,58 @@
   <div class="row">
 
 
-  <% @projects.all.each do |project| %>
-        <div class="col-sm-4 mb-3 ">
-          <div class="col-md-12 bg-secondary pb-3 rounded">
+    <% @projects.all.each do |project| %>
+          <div class="col-sm-4 mb-3 ">
+            <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
 
 
-          <h3> <%= project.name %> </h3>
-          <% project.tasks.each do |task | %>
+            <h3> <%= project.name %> </h3>
+            <% project.tasks.each do |task | %>
 
 
-          <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" data-toggle="modal" data-target="#task-<%= task.id %>" > <%= task.description %> </button>
+              <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" data-toggle="modal" data-target="#task-<%= task.id %>" > <%= task.description %> </button>
 
-          <!-- <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" > <%= task.description %> </button> -->
+              <!-- <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" > <%= task.description %> </button> -->
 
 
-          <!--  MODAL TEST -->
-          <div class="modal fade" id="task-<%= task.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content" >
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" >
-                  <!-- Task due date  -->
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+              <!--  MODAL TEST -->
+              <div class="modal fade" id="task-<%= task.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content" >
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" >
+                      <!-- assigned to & due date  -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Edit Task</button>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+
+            <% end %>
+
+            <div id="newTaskForm-<%= project.id %>" class="border">
+
+
+              <!-- <form class="taskForm-<%= project.id %>" onsubmit="postTask(); return false;">
+                <input id="description" type="text" name="description" value="description">
+                <input type="submit">
+              </form> -->
+
             </div>
-          </div>  <!-- END modal test -- >
 
-
-          <!-- <div id="task-<%= task.id %>">
-
-          </div> -->
-          <!-- <br> -->
-            <!-- <div id="task" class="bg-light my-3 rounded">
-            <%= task.description %><br>
-            </div> -->
-          <% end %>
-
-        <!-- <% tasks = project.tasks %>
-
-        <%= render partial: 'tasks/tasklist', :locals => {:@tasks => tasks, :project => project}%> -->
+            <button type="button" class="new-task btn btn-primary" data-project-id="<%= project.id %>">Add Task</button>
+            </div>
           </div>
-        </div>
-  <% end  %>
+    <% end  %>
 
   </div>
 </div>
@@ -69,6 +70,23 @@
       showTask(id);
     })
   })
+
+  $(function () {
+    $(".new-task").on("click", function(){
+      const projectId = $(this).data("project-id");
+      showTaskForm(projectId)
+    })
+  })
+
+  // $(function() {
+  //   $("form").submit(function(event) {
+  //     event.preventDefault();
+  //     debugger
+  //     const values = $(this).serialize()
+  //
+  //   })
+
+  // })
 
 
 

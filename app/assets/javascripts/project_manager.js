@@ -30,3 +30,32 @@ const showTask = function (id) {
 
   })
 }
+
+const showTaskForm = function(projectId) {
+  // const formTemplate =   "<form class="+"taskForm"+ "><input id=" + "description" + " type=" + "text" + " name=" + "description" + " value=" + "description" + "><input type=" + "submit" + "><button type=" + "button "+ " name=" + "cancel" + ">Cancel</button></form>"
+
+  // const formTemplate =   "<form id=" + 'taskForm-<%= project.id %>' + " onsubmit=" + "postTask();return false;" + "><input id=" + 'description' + " type=" + 'text' + " name=" + 'description' + " value=" + 'description' + "><input type=" + 'submit' + "></form>"
+
+  const formTemplate =  "<form class=" + "'taskForm-<%= project.id %>'" + " onsubmit=" + "'postTask(); return false;'" + "><input id=" + "'description'" + " type=" + "'text'" + " name=" + "'description'" + " value=" + "'description'" + "><input type=" + "'submit'" + "></form>"
+
+  $(`#newTaskForm-${projectId}`).html(formTemplate)
+}
+
+// $(`#taskForm-${projectId}`).submit(function(event) {
+//   event.preventDefault();
+//   debugger
+//   const values = $(this).serialize()
+// })
+
+const postTask = function() {
+  debugger
+}
+
+const newTask = function(projectId) {
+  // render new task form
+  $(`#project-${projectId}`).find('#newTaskForm').html("testing")
+
+  $.post('/tasks', function(taskData){
+
+  })
+}
