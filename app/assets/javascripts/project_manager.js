@@ -17,8 +17,15 @@ const showTask = function (id) {
     const formattedDueDate = dueDate.toDateString()
     const description = taskData.description
     const user = taskData.user.username
-    $(`#task-${taskData.id}`).html( formattedDueDate + "<br>" + user )
-    // $(`#task-${taskData.id}`).html("TESTING")
+
+    const modal = $(`#task-${taskData.id}`)
+    //
+    modal.find('.modal-title').html(description)
+    modal.find('.modal-body').html(formattedDueDate + "<br>" + user)
+
+    //
+    // $(`#task-${taskData.id}`).html( formattedDueDate + "<br>" + user )
+    // // $(`#task-${taskData.id}`).html("TESTING")
 
 
   })
