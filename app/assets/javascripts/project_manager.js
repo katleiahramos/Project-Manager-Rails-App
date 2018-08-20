@@ -23,13 +23,3 @@ const showTask = function (id) {
 
   })
 }
-
-// $(function() {
-//   $('.task-more').click(function(e){
-//     e.preventDefault();
-//     var mymodal = $(``);
-//     mymodal.find('.modal-body').text('hello');
-//     mymodal.modal('show');
-//   })
-//
-// })
