@@ -61,11 +61,15 @@ const newTask = function(projectId) {
   })
 }
 
+
+const buttonizeTask = function() {
+
+}
+
 $(function() {
-  $("#new_task").on("submit", function(event){
+  $(".new_task").on("submit", function(event){
     event.preventDefault();
     const url = this.action
-
     const values = $(this).serialize()
 
     $.post(url, values).success(function(response){
