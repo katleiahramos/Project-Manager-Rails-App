@@ -4,7 +4,7 @@ class Task < ApplicationRecord
 
 
   # validates :description, :due_date, presence: true
-  validates :description, presence: true
+  validates :name, presence: true
   validate :due_date_cannot_be_in_the_past
 
   scope :completed_tasks, -> {where(completed: true)}
