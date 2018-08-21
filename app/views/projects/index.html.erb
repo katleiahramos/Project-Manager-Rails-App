@@ -48,7 +48,7 @@
 
             <% end %>
             </div>
-            <div id="newTaskForm-<%= project.id %>" class="border">
+            <div id="newTaskForm-<%= project.id %>" class="">
 
 
               <!-- <form class="taskForm-<%= project.id %>" onsubmit="postTask(); return false;">
@@ -56,11 +56,11 @@
                 <input type="submit">
               </form> -->
 
-              <%= form_for([project, Task.new]) do |f| %>
-              <%= f.text_area :description %>
+              <!-- <%= form_for([project, Task.new]) do |f| %>
+              <%= f.text_area :description %><br>
               <%= f.collection_select :user_id, User.all, :id, :username %>
               <%= f.submit%>
-              <% end %>
+              <% end %> -->
             </div>
 
             <button type="button" class="new-task btn btn-primary" data-project-id="<%= project.id %>">Add Task</button>

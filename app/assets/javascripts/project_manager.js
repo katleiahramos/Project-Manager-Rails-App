@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 
 const attachListeners = function() {
-  $('#testButton').on('click', () => testFunction(2))
+
 }
 
 
@@ -34,13 +34,25 @@ const showTask = function (id) {
 }
 
 const showTaskForm = function(projectId) {
-  const formTemplate =   "<form class="+'"taskForm"'+ "><input id=" + '"description"' + " type=" + '"text" '+ " name=" + '"description"' + " value=" + '"description" '+ "><input type=" + '"submit"' + "><button type=" + '"button "'+ " name=" + '"cancel"' + ">Cancel</button></form>"
+  const formTemplate = `
+    <form class="taskForm">
+      <input id="description" type"text" name="description" value="description">
+
+      <input type="submit">
+    </form>`
 
 
+
+  // add id to button input
 
   // const formTemplate =  "<form class=" + "'taskForm-<%= project.id %>'" + " onsubmit=" + "'postTask(); return false;'" + "><input id=" + "'description'" + " type=" + "'text'" + " name=" + "'description'" + " value=" + "'description'" + "><input type=" + "'submit'" + "></form>"
 
   $(`#newTaskForm-${projectId}`).html(formTemplate);
+
+  $('.taskForm').on('submit', function(){
+    debugger
+  })
+
 }
 
 // $(`#taskForm-${projectId}`).submit(function(event) {
@@ -58,8 +70,16 @@ const newTask = function(projectId) {
   // render new task form
   $(`#project-${projectId}`).find('#newTaskForm').html("testing")
 
-  $.post('/tasks', function(taskData){
+  $.post(url, values).success(function(response){
 
+    const description = response.description;
+    const projectId = response.project.id
+    const taskId = response.id
+    const button = buttonizeTask(description, taskId);
+    $(`#project-${projectId}`).find(".tasks").append(button);
+
+    $(`#project-${projectId}`).find("form").get(0).reset()
+    $(`#project-${projectId}`).find("form").find("input[type=submit]").removeAttr('disabled');
   })
 }
 
@@ -70,7 +90,8 @@ const buttonizeTask = function(description, taskId) {
 }
 
 $(function() {
-  $(".new_task").on("submit", function(event){
+  $(".taskForm").on("submit", function(event){
+    debugger
     event.preventDefault();
     const url = this.action
     const values = $(this).serialize()
