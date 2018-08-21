@@ -85,7 +85,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:due_date, :description, :user_id, :project_id)
+    params.require(:task).permit(:name,:due_date, :description, :user_id, :project_id)
   end
 
   def require_login
