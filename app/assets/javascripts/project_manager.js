@@ -17,17 +17,12 @@ const showTask = function (id) {
     // {id: 2, due_date: "2018-07-12T00:00:00.000Z", description: "Create command line design", user_id: 3, project_id: 3, …}
     const dueDate = new Date(taskData.due_date)
     const formattedDueDate = dueDate.toDateString()
-    const description = taskData.description
+    const name = taskData.name
     const user = taskData.user.username
 
-    const modal = $(`#task-${taskData.id}`)
-    //
-    modal.find('.modal-title').html(description)
-    modal.find('.modal-body').html(formattedDueDate + "<br>" + user)
-
-    //
-    // $(`#task-${taskData.id}`).html( formattedDueDate + "<br>" + user )
-    // // $(`#task-${taskData.id}`).html("TESTING")
+    // const modal = $(`#task-${taskData.id}`)
+    $('.modal-title').html(name)
+    $('.modal-body').html(formattedDueDate + "<br>" + user)
 
 
   })
@@ -60,7 +55,7 @@ const showTaskForm = function(projectId) {
       const button = buttonizeTask(name, taskId);
 
       $(`#project-${projectId}`).find(".tasks").append(button);
-
+      // need to append modal
       $(`#project-${projectId}`).find("form").get(0).reset()
       $(`#project-${projectId}`).find("form").find("input[type=submit]").removeAttr('disabled');
     })
@@ -72,8 +67,9 @@ const showTaskForm = function(projectId) {
 
 const buttonizeTask = function(name, taskId) {
   return  `<button type="button" class="task-more btn btn-light my-2" data-id="${taskId}" name="button" data-toggle="modal" data-target="#task-${taskId}" >${name}</button>`
-
 }
+
+
 
 $(function() {
   $(".taskForm").on("submit", function(event){
