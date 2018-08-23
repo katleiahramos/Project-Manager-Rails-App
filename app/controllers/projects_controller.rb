@@ -2,10 +2,7 @@ class ProjectsController < ApplicationController
   before_action :require_login
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
-  def test
-    projects = Project.all
-    render json: projects
-  end
+
 
   def index
     @projects = Project.all

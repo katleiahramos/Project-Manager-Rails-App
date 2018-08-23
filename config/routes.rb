@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'projects#index'
 
-  get '/tasks/:id/test', to: 'tasks#test'
+
 
   resources :sessions
 

@@ -1,11 +1,53 @@
 $(document).ready(function() {
   attachListeners();
-  // renderTasks();
-  // render project
+  renderProjects();
 });
+
+const projectTemplate = (projectId, projectName) => {
+  return `
+    <div class="col-sm-4 mb-3 ">
+      <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
+
+
+      <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
+
+        <div class="tasks">
+
+        </div>
+
+        <div id="newTaskForm-${projectId}" class="collapse">
+
+        </div>
+
+      <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
+      </div>
+    </div>
+  `
+}
+
+
+const renderProjects = () => {
+  $.get('/projects.json', function(projects){
+    for(const i of projects){
+
+      const projectHTML = projectTemplate(i.id, i.name)
+
+      $('#projects').append(projectHTML)
+      $(function() {
+        $(".project-more").on("click", function(){
+
+          const projectId = $(this).data("projectId");
+          renderTasks(projectId);
+        })
+      })
+      // append HTML to projects div
+    }
+  })
+}
 
 const renderTasks = (projectId) => {
   $.get(`/projects/${projectId}`, function(projectData){
+    // should this be a for each?
     for(const i of projectData){
       const name = i.name;
       const taskId = i.id;

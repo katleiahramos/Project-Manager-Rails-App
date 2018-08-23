@@ -3,7 +3,7 @@
 <!-- <a href="/users/most_projects"> Click here to see who has the most projects!</a> -->
 
 <div class="container ">
-  <div class="row">
+  <div class="row" id="projects">
 
 
     <% @projects.all.each do |project| %>
@@ -11,7 +11,7 @@
             <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
 
 
-            <button type="button" data-project-id="<%= project.id %>" class="project-more"><%= project.name %> </button>
+            <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-primary"><%= project.name %> </button>
 
               <div class="tasks">
 
