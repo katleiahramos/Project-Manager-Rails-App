@@ -11,10 +11,10 @@ Specs:
 
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
   + could I use projects has many tasks?
+  + needs to be appended to dom via JSON
 
-- [ ] Use your Rails API and a form to create a resource and render the response without a page refresh.
+- [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
   + create a new task
-  + edit task  
 
 - [ ] Translate JSON responses into js model objects.
   + ??????
