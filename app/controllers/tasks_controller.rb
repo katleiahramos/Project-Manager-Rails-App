@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    #@task = Task.find(params[:id])
+    render layout: false
   end
 
   def update
