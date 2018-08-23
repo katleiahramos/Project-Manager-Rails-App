@@ -11,22 +11,22 @@
             <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
 
 
-            <h3> <%= project.name %> </h3>
+            <button type="button" data-project-id="<%= project.id %>" class="project-more"><%= project.name %> </button>
 
-            <div class="tasks">
-
-
-            <% project.tasks.each do |task | %>
+              <div class="tasks">
 
 
-              <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" data-toggle="modal" data-target=".modal" > <%= task.name %> </button>
+              <!-- <% project.tasks.each do |task | %>
 
 
-            <% end %>
-            </div>
-            <div id="newTaskForm-<%= project.id %>" class="collapse">
+                <button type="button" class="task-more btn btn-light my-2" data-id="<%= task.id %>" name="button" data-toggle="modal" data-target=".modal" > <%= task.name %> </button>
 
-            </div>
+
+              <% end %> -->
+              </div>
+              <div id="newTaskForm-<%= project.id %>" class="collapse">
+
+              </div>
 
             <button type="button" class="new-task btn btn-primary" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >Add Task</button>
             </div>

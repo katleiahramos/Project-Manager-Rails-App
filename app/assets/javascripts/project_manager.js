@@ -1,13 +1,40 @@
 $(document).ready(function() {
   attachListeners();
+  // renderTasks();
   // render project
 });
 
+const renderTasks = (projectId) => {
+  $.get(`/projects/${projectId}`, function(projectData){
+    for(const i of projectData){
+      const name = i.name;
+      const taskId = i.id;
+
+      const button = buttonizeTask(name, taskId);
+
+      $(`#project-${projectId}`).find(".tasks").append(button);
+
+      $(".task-more").on("click", function(){
+        const id = $(this).data("id");
+        showTask(id);
+      })
+
+    }
+  })
+}
 const attachListeners = function() {
   $(function () {
     $(".task-more").on("click", function(){
       const id = $(this).data("id");
       showTask(id);
+    })
+  })
+
+  $(function() {
+    $(".project-more").on("click", function(){
+
+      const projectId = $(this).data("projectId");
+      renderTasks(projectId);
     })
   })
 
@@ -66,8 +93,8 @@ const showTaskForm = function(projectId) {
       const button = buttonizeTask(name, taskId);
 
       $(`#project-${projectId}`).find(".tasks").append(button);
-      
-      // add new event listener for form element
+
+      // add new event listener for new task
       $(".task-more").on("click", function(){
         const id = $(this).data("id");
         showTask(id);
