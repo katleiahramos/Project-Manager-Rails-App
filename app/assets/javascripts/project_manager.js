@@ -241,9 +241,13 @@ const updateTask = (url, values) => {
 
 const showTaskForm = function(projectId) {
   const formTemplate =   `
+  <br>
     <form class="taskForm" action="/projects/${projectId}/tasks" method="POST" data-project-id="<%= project.id %>">
-        <input type"text" name="task[name]" value="">
-        <input type="submit">
+
+      Name: <input type"text" name="task[name]" value="">
+
+
+        <input class="btn btn-primary" type="submit">
     </form>`
 
   $(`#newTaskForm-${projectId}`).html(formTemplate);
