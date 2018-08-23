@@ -10,7 +10,7 @@
           <div class="col-sm-4 mb-3 ">
             <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
 
-
+            <br>
             <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-primary"><%= project.name %> </button>
 
               <div class="tasks">
@@ -20,7 +20,7 @@
 
               </div>
 
-            <button type="button" class="new-task btn btn-primary" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >Add Task</button>
+            <br><button type="button" class="new-task btn btn-dark" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >Add Task</button>
             </div>
           </div>
     <% end  %>

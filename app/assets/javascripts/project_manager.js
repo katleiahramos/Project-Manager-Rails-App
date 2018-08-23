@@ -1,6 +1,6 @@
 $(document).ready(function() {
   attachListeners();
-  renderProjects();
+  // renderProjects();
 });
 
 const projectTemplate = (projectId, projectName) => {
@@ -48,20 +48,21 @@ const renderProjects = () => {
 const renderTasks = (projectId) => {
   $.get(`/projects/${projectId}`, function(projectData){
     // should this be a for each?
+    let tasksHTML = ""
     for(const i of projectData){
       const name = i.name;
       const taskId = i.id;
 
       const button = buttonizeTask(name, taskId);
 
-      $(`#project-${projectId}`).find(".tasks").append(button);
-
-      $(".task-more").on("click", function(){
-        const id = $(this).data("id");
-        showTask(id);
-      })
+      tasksHTML += button
 
     }
+    $(`#project-${projectId}`).find(".tasks").html(tasksHTML);
+    $(".task-more").on("click", function(){
+      const id = $(this).data("id");
+      showTask(id);
+    })
   })
 }
 const attachListeners = function() {
