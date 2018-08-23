@@ -29,6 +29,18 @@ const attachListeners = function() {
       createProject();
     })
   })
+
+  $(function() {
+    $('.projectDelete').on('click', function(event){
+      const projectId = $(this).data("project-id");
+      $.ajax({
+        url: `projects/${projectId}`,
+        type: 'DELETE'
+      }).success(function(){
+        location.reload();
+      })
+    })
+  })
 }
 
 /////////////// JS Model Object //////////////
@@ -55,7 +67,7 @@ Task.prototype.format = function(){
 const createProject = function() {
   // show project form
   $.get('/projects/new',function(projectForm){
-    $('#newProjectForm').html(projectForm)
+    $('#newProjectForm').html('<br>' + projectForm)
 
     $('#new_project').submit(function(event){
       event.preventDefault()
@@ -66,15 +78,29 @@ const createProject = function() {
         const projectId = projectData.id
         const projectName = projectData.name
 
+        // refresh form
+        $(`#newProjectForm`).find("form").get(0).reset()
+        $(`#newProjectForm`).find("form").find("input[type=submit]").removeAttr('disabled');
+
         const projectHTML = projectTemplate(projectId, projectName)
 
             // render project
 
         $('#projects').append(projectHTML)
-      
+
           $(".new-task").on("click", function(){
             const projectId = $(this).data("project-id");
             showTaskForm(projectId)
+          })
+
+          $('.projectDelete').on('click', function(event){
+            const projectId = $(this).data("project-id");
+            $.ajax({
+              url: `projects/${projectId}`,
+              type: 'DELETE'
+            }).success(function(){
+              location.reload();
+            })
           })
 
       })
@@ -94,8 +120,8 @@ const projectTemplate = (projectId, projectName) => {
     <div class="col-sm-4 mb-3 ">
       <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
 
-
-      <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
+      <br>
+      <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary text-center col-md-12 py-3 rounded btn">${projectName}</button>
 
         <div class="tasks">
 
@@ -105,7 +131,10 @@ const projectTemplate = (projectId, projectName) => {
 
         </div>
 
-      <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
+      <br><button type="button" class="new-task btn btn-dark m-1" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
+
+      <button type="button" id="projectDelete" class="btn btn-warning" data-project-id="${projectId}">Delete Project</button>
+
       </div>
     </div>
   `
