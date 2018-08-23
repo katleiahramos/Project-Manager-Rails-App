@@ -6,21 +6,20 @@ Specs:
 - [x] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
   + clicking on task renders task info
 
-- [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
-  + home page ?
+- [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+  + clicking on project renders tasks
 
-- [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
-  + could I use projects has many tasks?
-  + needs to be appended to dom via JSON
+- [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
+  + Projects has many tasks
 
 - [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
   + create a new task
 
-- [ ] Translate JSON responses into js model objects.
-  + ??????
+- [x] Translate JSON responses into js model objects.
+  + task = new Task
 
-- [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
-  + ??????
+- [x] At least one of the js model objects must have at least one method added by your code to the prototype.
+  + Task.format()
 
 Confirm
 - [ ] You have a large number of small Git commits

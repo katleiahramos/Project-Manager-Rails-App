@@ -1,49 +1,90 @@
 $(document).ready(function() {
   attachListeners();
-  // renderProjects();
 });
 
-const projectTemplate = (projectId, projectName) => {
+const attachListeners = function() {
+  $(function () {
+    $(".task-more").on("click", function(){
+      const id = $(this).data("id");
+      showTask(id);
+    })
+  })
+
+  $(function() {
+    $(".project-more").on("click", function(){
+      const projectId = $(this).data("projectId");
+      renderTasks(projectId);
+    })
+  })
+
+  $(function () {
+    $(".new-task").on("click", function(){
+      const projectId = $(this).data("project-id");
+      showTaskForm(projectId)
+    })
+  })
+}
+
+/////////////// JS Model Object //////////////
+
+function Task(name, description, dueDate, user) {
+  this.name = name;
+  this.description = description;
+  this.dueDate = dueDate;
+  this.user = user;
+}
+
+Task.prototype.format = function(){
   return `
-    <div class="col-sm-4 mb-3 ">
-      <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
-
-
-      <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
-
-        <div class="tasks">
-
-        </div>
-
-        <div id="newTaskForm-${projectId}" class="collapse">
-
-        </div>
-
-      <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
-      </div>
-    </div>
+   <p>Description: ${this.description}</p>
+   <p>Due Date: ${this.dueDate}
+   <p>Assigned To: ${this.user}</p>
   `
 }
 
+/////////////////////////////////////////////
 
-const renderProjects = () => {
-  $.get('/projects.json', function(projects){
-    for(const i of projects){
+// const projectTemplate = (projectId, projectName) => {
+//   return `
+//     <div class="col-sm-4 mb-3 ">
+//       <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
+//
+//
+//       <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
+//
+//         <div class="tasks">
+//
+//         </div>
+//
+//         <div id="newTaskForm-${projectId}" class="collapse">
+//
+//         </div>
+//
+//       <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
+//       </div>
+//     </div>
+//   `
+// }
 
-      const projectHTML = projectTemplate(i.id, i.name)
 
-      $('#projects').append(projectHTML)
-      $(function() {
-        $(".project-more").on("click", function(){
-
-          const projectId = $(this).data("projectId");
-          renderTasks(projectId);
-        })
-      })
-      // append HTML to projects div
-    }
-  })
-}
+// const renderProjects = () => {
+//   $.get('/projects.json', function(projects){
+//     for(const i of projects){
+//
+//       const projectHTML = projectTemplate(i.id, i.name)
+//
+//       $('#projects').append(projectHTML)
+//       $(function() {
+//         $(".project-more").on("click", function(){
+//
+//           const projectId = $(this).data("projectId");
+//           renderTasks(projectId);
+//         })
+//       })
+//       // append HTML to projects div
+//     }
+//   })
+// }
 
 const renderTasks = (projectId) => {
   $.get(`/projects/${projectId}`, function(projectData){
@@ -63,30 +104,6 @@ const renderTasks = (projectId) => {
     })
   })
 }
-const attachListeners = function() {
-  $(function () {
-    $(".task-more").on("click", function(){
-      const id = $(this).data("id");
-      showTask(id);
-    })
-  })
-
-  $(function() {
-    $(".project-more").on("click", function(){
-
-      const projectId = $(this).data("projectId");
-      renderTasks(projectId);
-    })
-  })
-
-  $(function () {
-    $(".new-task").on("click", function(){
-      const projectId = $(this).data("project-id");
-      showTaskForm(projectId)
-    })
-  })
-}
-
 
 const showTask = function (id) {
 
@@ -94,18 +111,27 @@ const showTask = function (id) {
     // {id: 2, due_date: "2018-07-12T00:00:00.000Z", description: "Create command line design", user_id: 3, project_id: 3, …}
     let user = ""
     let formattedDueDate = ""
+    let description = ""
+    const name = taskData.name
 
     if (taskData.due_date){
       const dueDate = new Date(taskData.due_date)
       formattedDueDate = dueDate.toDateString()
     }
-    const name = taskData.name
-    const editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
     if (taskData.user) { user = taskData.user.username}
+    if (taskData.description) {description = taskData.description}
+
+
+    const editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
+
+
+    const task = new Task(name, description, formattedDueDate, user)
+
+    const taskHTML = task.format()
 
     // const modal = $(`#task-${taskData.id}`)
     $('.modal-title').html(name)
-    $('.modal-body').html('Due Date: ' + formattedDueDate + "<br> Assign to: " + user + "<br>" + editButton)
+    $('.modal-body').html(taskHTML + editButton)
 
     $('#edit-task').on("click", function(){
       editTask($(this).data("taskId"));
@@ -177,5 +203,5 @@ const showTaskForm = function(projectId) {
 }
 
 const buttonizeTask = function(name, taskId) {
-  return  `<button type="button" class="task-more btn btn-light my-2" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
+  return  `<button type="button" class="task-more btn btn-light m-1" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
 }
