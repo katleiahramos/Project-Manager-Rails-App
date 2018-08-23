@@ -57,14 +57,14 @@ class TasksController < ApplicationController
   end
 
   def update
-
-    if @task.update(task_params)
-
-      redirect_to projects_path
-    else
-      render :edit
-    end
-
+    # if @task.update(task_params)
+    #
+    #   redirect_to projects_path
+    # else
+    #   render :edit
+    # end
+    @task.update(task_params)
+    render json: @task, status: 201
   end
 
   def complete

@@ -52,11 +52,9 @@ const renderTasks = (projectId) => {
     for(const i of projectData){
       const name = i.name;
       const taskId = i.id;
-
       const button = buttonizeTask(name, taskId);
 
       tasksHTML += button
-
     }
     $(`#project-${projectId}`).find(".tasks").html(tasksHTML);
     $(".task-more").on("click", function(){
@@ -102,13 +100,41 @@ const showTask = function (id) {
       formattedDueDate = dueDate.toDateString()
     }
     const name = taskData.name
-
+    const editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
     if (taskData.user) { user = taskData.user.username}
 
     // const modal = $(`#task-${taskData.id}`)
     $('.modal-title').html(name)
-    $('.modal-body').html('Due Date: ' + formattedDueDate + "<br> Assign to: " + user)
+    $('.modal-body').html('Due Date: ' + formattedDueDate + "<br> Assign to: " + user + "<br>" + editButton)
 
+    $('#edit-task').on("click", function(){
+      editTask($(this).data("taskId"));
+
+    })
+
+  })
+}
+
+const editTask = (taskId) => {
+  $.get(`/tasks/${taskId}/edit`, function(response){
+    $('.modal-body').html(response)
+
+    $('.edit_task').on('submit', function(event){
+      event.preventDefault();
+      const url = this.action;
+      const values = $(this).serialize();
+      updateTask(url, values);
+    })
+  })
+}
+
+const updateTask = (url, values) => {
+  $.ajax({
+    type: 'PATCH',
+    url: url,
+    data: values
+  }).success(function(response){
+    showTask(response.id)
   })
 }
 
