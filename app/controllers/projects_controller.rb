@@ -19,20 +19,24 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    render layout: false
   end
 
   def create
 
     @project = Project.new(project_params)
     if @project.save
-      redirect_to projects_path
-    else
-      render :new
+      render json: @project
     end
+    # if @project.save
+    #   redirect_to projects_path
+    # else
+    #   render :new
+    # end
   end
 
   def edit
-    render layout: false 
+    render layout: false
   end
 
   def update

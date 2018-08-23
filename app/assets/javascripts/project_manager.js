@@ -23,6 +23,12 @@ const attachListeners = function() {
       showTaskForm(projectId)
     })
   })
+
+  $(function () {
+    $('#add-project').on('click', function(){
+      createProject();
+    })
+  })
 }
 
 /////////////// JS Model Object //////////////
@@ -44,27 +50,66 @@ Task.prototype.format = function(){
 
 /////////////////////////////////////////////
 
-// const projectTemplate = (projectId, projectName) => {
-//   return `
-//     <div class="col-sm-4 mb-3 ">
-//       <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
-//
-//
-//       <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
-//
-//         <div class="tasks">
-//
-//         </div>
-//
-//         <div id="newTaskForm-${projectId}" class="collapse">
-//
-//         </div>
-//
-//       <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
-//       </div>
-//     </div>
-//   `
-// }
+
+
+const createProject = function() {
+  // show project form
+  $.get('/projects/new',function(projectForm){
+    $('#newProjectForm').html(projectForm)
+
+    $('#new_project').submit(function(event){
+      event.preventDefault()
+      const url = this.action;
+      const values = $(this).serialize();
+          // save project
+      $.post(url, values).success(function(projectData){
+        const projectId = projectData.id
+        const projectName = projectData.name
+
+        const projectHTML = projectTemplate(projectId, projectName)
+
+            // render project
+
+        $('#projects').append(projectHTML)
+      
+          $(".new-task").on("click", function(){
+            const projectId = $(this).data("project-id");
+            showTaskForm(projectId)
+          })
+
+      })
+
+
+
+
+    })
+  })
+
+
+
+}
+
+const projectTemplate = (projectId, projectName) => {
+  return `
+    <div class="col-sm-4 mb-3 ">
+      <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
+
+
+      <button type="button" data-project-id="${projectId}" class="project-more btn btn-primary">${projectName}</button>
+
+        <div class="tasks">
+
+        </div>
+
+        <div id="newTaskForm-${projectId}" class="collapse">
+
+        </div>
+
+      <button type="button" class="new-task btn btn-primary" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >Add Task</button>
+      </div>
+    </div>
+  `
+}
 
 
 // const renderProjects = () => {

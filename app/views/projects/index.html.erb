@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 <div class="container ">
   <div class="row" id="projects">
     <% @projects.all.each do |project| %>
@@ -22,17 +26,21 @@
               </div>
 
             <br><button type="button" class="new-task btn btn-dark m-1" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >Add Task</button>
+
+            <button type="button" id="projectDelet" class="btn btn-warning" data-project-id="<%= project.id %>">Delete Project</button>
             </div>
           </div>
     <% end  %>
 
-    <div class="col-sm-4 mb-3 ">
-      <div class="" id="add-project">
-        <button type="button" class="text-center col-md-12 py-3 rounded btn btn-info " name="">New Project</button>
+    <div class="d-inline col-sm-4 ">
+      <button id="add-project" type="button" class="text-center col-md-12 py-3 rounded btn btn-info " name="">New Project</button>
+      <div id="newProjectForm">
       </div>
     </div>
-    
+
+
   </div>
+
 </div>
 
 
