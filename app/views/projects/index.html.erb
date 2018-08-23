@@ -8,8 +8,6 @@
 
 <div class="container ">
   <div class="row" id="projects">
-
-
     <% @projects.all.each do |project| %>
           <div class="col-sm-4 mb-3 ">
             <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
@@ -28,6 +26,12 @@
           </div>
     <% end  %>
 
+    <div class="col-sm-4 mb-3 ">
+      <div class="" id="add-project">
+        <button type="button" class="text-center col-md-12 py-3 rounded btn btn-info " name="">New Project</button>
+      </div>
+    </div>
+    
   </div>
 </div>
 
