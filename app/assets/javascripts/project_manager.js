@@ -283,5 +283,5 @@ const showTaskForm = function(projectId) {
 }
 
 const buttonizeTask = function(name, taskId) {
-  return  `<button type="button" class="task-more btn btn-light m-1" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
+  return  `<button type="button" class="task-more  btn btn-light btn-block m-1" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
 }
