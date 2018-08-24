@@ -1,4 +1,5 @@
 
+
 <h1>Projects</h1>
 <!-- <a href="/users/most_projects"> Click here to see who has the most projects!</a> -->
 
@@ -6,28 +7,38 @@
 
 
 
-
-
-
-
-<div class="container ">
+<div class=" mx-5 ">
   <div class="row" id="projects">
 
-    <div class="col-sm-4 mb-3 ">
+    <div class="col-sm-2 mb-3 ">
       <div class="col-md-12 bg-secondary pb-3 rounded">
         <br>
-        <button id="add-project" type="button" class="text-center col-md-12 py-3 rounded btn" data-toggle="collapse" data-target="#newProjectForm" aria-expanded="false" aria-controls="">New Project</button>
+        <button id="add-project" type="button" class="text-center col-md-12 py-3 rounded btn btn-outline-light" data-toggle="collapse" data-target="#newProjectForm" aria-expanded="false" aria-controls="">New Project</button>
         <div id="newProjectForm">
         </div>
       </div>
     </div>
 
     <% @projects.all.each do |project| %>
-          <div class="col-sm-4 mb-3 ">
+          <div class="col-sm-2 mb-3 ">
             <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
 
-              <br>
-              <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-primary text-center col-md-12 py-3 rounded btn" data-toggle="collapse" data-target="#project-<%= project.id %>-tasks"><%= project.name %> </button>
+
+<!-- test div with menu -->
+
+
+<!--  -->
+              <br><div class="btn-group">
+                <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-secondary text-center py-3 rounded btn" data-toggle="collapse" data-target="#project-<%= project.id %>-tasks"><%= project.name %> </button>
+
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                  <a class="dropdown-item" href="#">Edit Project</a>
+                  <a class="projectDelete dropdown-item" data-project-id="<%= project.id %>" href="#">Delete Project</a>
+                </div>
+              </div>
 
               <div id="project-<%= project.id %>-tasks" class="tasks">
               </div>
@@ -35,9 +46,9 @@
               <div id="newTaskForm-<%= project.id %>" class="collapse">
               </div>
 
-            <br><button type="button" class="new-task btn btn-dark m-1" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >Add Task</button>
+            <br><button type="button" class="new-task btn btn-outline-light m-1" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >+ Add Task</button>
 
-            <button type="button" class="projectDelete btn btn-warning" data-project-id="<%= project.id %>">Delete Project</button>
+            <!-- <button type="button" class="projectDelete btn btn-warning" data-project-id="<%= project.id %>">Delete Project</button> -->
             </div>
           </div>
     <% end  %>

@@ -41,6 +41,8 @@ const attachListeners = function() {
       })
     })
   })
+
+
 }
 
 /////////////// JS Model Object //////////////
@@ -117,7 +119,7 @@ const createProject = function() {
 
 const projectTemplate = (projectId, projectName) => {
   return `
-    <div class="col-sm-4 mb-3 ">
+    <div class="col-sm-2 mb-3 ">
       <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
 
       <br>
