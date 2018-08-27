@@ -120,29 +120,29 @@ const createProject = function() {
 const projectTemplate = (projectId, projectName) => {
   return `
   <div class="col-sm-2 mb-3 ">
-    <div id="project-<%= project.id %>" class="col-md-12 bg-secondary pb-3 rounded">
+    <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
 
       <br><div class="btn-group">
-        <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-secondary text-center py-3 rounded btn" data-toggle="collapse" data-target="#project-<%= project.id %>-tasks"><%= project.name %> </button>
+        <button type="button" data-project-id="<%= project.id %>" class="project-more btn btn-secondary text-center py-3 rounded btn" data-toggle="collapse" data-target="#project-${projectId}-tasks">${projectName}</button>
 
         <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
           <a class="dropdown-item" href="#">Edit Project</a>
-          <a class="projectDelete dropdown-item" data-project-id="<%= project.id %>" href="#">Delete Project</a>
+          <a class="projectDelete dropdown-item" data-project-id="${projectId}" href="#">Delete Project</a>
         </div>
       </div>
 
-      <div id="project-<%= project.id %>-tasks" class="tasks">
+      <div id="project-${projectId}-tasks" class="tasks">
       </div>
 
-      <div id="newTaskForm-<%= project.id %>" class="collapse">
+      <div id="newTaskForm-${projectId}" class="collapse">
       </div>
 
-    <br><button type="button" class="new-task btn btn-outline-light m-1" data-project-id="<%= project.id %>" data-toggle="collapse" data-target="#newTaskForm-<%= project.id %>" aria-expanded="false" aria-controls="" >+ Add Task</button>
+    <br><button type="button" class="new-task btn btn-outline-light m-1" data-project-id="${projectId}" data-toggle="collapse" data-target="#newTaskForm-${projectId}" aria-expanded="false" aria-controls="" >+ Add Task</button>
 
-    <!-- <button type="button" class="projectDelete btn btn-warning" data-project-id="<%= project.id %>">Delete Project</button> -->
+    <!-- <button type="button" class="projectDelete btn btn-warning" data-project-id="${projectId}">Delete Project</button> -->
     </div>
   </div>
   `
