@@ -245,11 +245,14 @@ const showTaskForm = function(projectId) {
   const formTemplate =   `
   <br>
     <form class="taskForm" action="/projects/${projectId}/tasks" method="POST" data-project-id="<%= project.id %>">
-
-      Name: <input type"text" name="task[name]" value="">
-
-
-        <input class="btn btn-primary" type="submit">
+      <div class="form-row">
+        <div class="col-6 mb-2">
+          <input class="form-control" type"text" name="task[name]" placeholder="Task Name">
+        </div>
+        <div class="col-2 mb-2">
+          <input class="btn btn-primary" type="submit">
+        </div>
+      </div>
     </form>`
 
   $(`#newTaskForm-${projectId}`).html(formTemplate);

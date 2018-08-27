@@ -8,6 +8,7 @@ Specs:
 
 - [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
   + clicking on project renders tasks
+  + on document.ready render tasks 
 
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
   + Projects has many tasks
