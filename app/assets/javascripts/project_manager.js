@@ -87,8 +87,7 @@ const createProject = function() {
         const projectHTML = projectTemplate(projectId, projectName)
 
             // render project
-
-        $('#projects').append(projectHTML)
+        $('#project-tiles').append(projectHTML)
 
           $(".new-task").on("click", function(){
             const projectId = $(this).data("project-id");
@@ -119,7 +118,7 @@ const createProject = function() {
 
 const projectTemplate = (projectId, projectName) => {
   return `
-  <div class="col-sm-2 mb-3 ">
+  <div class="col-sm-3 mb-3 ">
     <div id="project-${projectId}" class="col-md-12 bg-secondary pb-3 rounded">
 
       <br><div class="btn-group">
