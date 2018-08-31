@@ -2,10 +2,7 @@ class TasksController < ApplicationController
   before_action :require_login
   before_action :set_task, only: [:edit, :update, :destroy, :complete]
 
-  def show
-    task = Task.find(params[:id])
-    render json: task
-  end
+
 
   def index
 
@@ -20,6 +17,11 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all
     end
+  end
+
+  def indexCompleted
+    @tasks = Task.completed_tasks
+    render json: @tasks
   end
 
   def new
@@ -54,6 +56,11 @@ class TasksController < ApplicationController
 
   def edit
     render layout: false
+  end
+
+  def show
+    task = Task.find(params[:id])
+    render json: task
   end
 
   def update

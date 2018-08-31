@@ -1,5 +1,6 @@
 $(document).ready(function() {
   attachListeners();
+  renderCompletedTasks();
 });
 
 const attachListeners = function() {
@@ -64,7 +65,26 @@ Task.prototype.format = function(){
 
 /////////////////////////////////////////////
 
+const renderCompletedTasks = () => {
+  // get all completed tasks
+  $.get('/tasks/indexCompleted', function(tasks){
 
+    let tasksHTML = ""
+    for(const task of tasks){
+      tasksHTML += buttonizeTask(task.name, task.id)
+    }
+
+    // append them to completed-tasks div
+    $('#completed-tasks').html(`<h4 class="text-light"> Completed Tasks</h4>` + tasksHTML)
+    // attachListeners
+    $(".task-more").on("click", function(){
+      const id = $(this).data("id");
+      showTask(id);
+    })
+
+  })
+
+}
 
 const createProject = function() {
   // show project form
@@ -172,11 +192,13 @@ const renderTasks = (projectId) => {
     // should this be a for each?
     let tasksHTML = ""
     for(const i of projectData){
+      if(i.completed == false){
       const name = i.name;
       const taskId = i.id;
       const button = buttonizeTask(name, taskId);
 
       tasksHTML += button
+      }
     }
     $(`#project-${projectId}`).find(".tasks").html(tasksHTML);
     $(".task-more").on("click", function(){
@@ -193,6 +215,8 @@ const showTask = function (id) {
     let user = ""
     let formattedDueDate = ""
     let description = ""
+    let editButton = ""
+    let completeButton = ""
     const name = taskData.name
 
     if (taskData.due_date){
@@ -202,11 +226,13 @@ const showTask = function (id) {
     if (taskData.user) { user = taskData.user.username}
     if (taskData.description) {description = taskData.description}
 
+    if (!taskData.completed){
+    editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
 
-    const editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
 
-    const completeButton = `<button type="button" id="complete-task" class="btn btn-primary mx-2" data-task-id="${taskData.id}">Complete Task</button>`
+    completeButton = `<button type="button" id="complete-task" class="btn btn-primary mx-2" data-task-id="${taskData.id}">Mark as Complete</button>`}
 
+    const deleteButton = `<button type="button" id="delete-task" class="btn btn-primary" data-task-id="${taskData.id}">Delete Task</button>`
 
     const task = new Task(name, description, formattedDueDate, user)
 
@@ -214,7 +240,7 @@ const showTask = function (id) {
 
     // const modal = $(`#task-${taskData.id}`)
     $('.modal-title').html(name)
-    $('.modal-body').html(taskHTML + editButton + completeButton)
+    $('.modal-body').html(taskHTML + editButton + completeButton + deleteButton)
 
     $('#edit-task').on("click", function(){
       editTask($(this).data("taskId"));
@@ -224,19 +250,34 @@ const showTask = function (id) {
       completeTask($(this).data("taskId"))
     })
 
+    $('#delete-task').on('click', function(){
+      deleteTask($(this).data("taskId"))
+    })
   })
+}
+
+const deleteTask = (taskId) => {
+  if(confirm('Are you sure you want to delete this?')){
+    $.ajax({
+      url: `tasks/${taskId}`,
+      type: 'DELETE'
+    }).success(function(){
+      location.reload();
+    })
+  }
 }
 
 const completeTask = (taskId) => {
   // go to route taks#complete route
-    $.get(`/tasks/${taskId}/complete`, function(task){
-      const taskButton = buttonizeTask(task.name, task.id)
-      $('#completed-tasks').append(taskButton)
+    $.get(`/tasks/${taskId}/complete`).success(function(){
+      location.reload();
     })
-
 }
 
+
+
 const editTask = (taskId) => {
+
   $.get(`/tasks/${taskId}/edit`, function(response){
     $('.modal-body').html(response)
 
@@ -305,5 +346,5 @@ const showTaskForm = function(projectId) {
 }
 
 const buttonizeTask = function(name, taskId) {
-  return  `<button type="button" class="task-more  btn btn-light btn-block m-1" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
+  return  `<button type="button" id='task-${taskId}' class="task-more  btn btn-light btn-block m-1" data-id="${taskId}" name="button" data-toggle="modal" data-target=".modal" >${name}</button>`
 }

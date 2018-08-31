@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     resources :tasks, only: [:new, :show, :index, :create]
   end
 
-  resources :tasks
 
 
   get '/signout', to: 'sessions#destroy'
@@ -32,7 +31,10 @@ Rails.application.routes.draw do
 
   get '/auth/facebook/callback' => 'sessions#create'
 
+  get '/tasks/indexCompleted' => 'tasks#indexCompleted'
   # get 'projects/:id/delete', to: "projects#delete"
 
   get '/users/most_projects', to: "users#most_projects"
+
+  resources :tasks
 end
