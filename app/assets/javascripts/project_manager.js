@@ -229,8 +229,11 @@ const showTask = function (id) {
 
 const completeTask = (taskId) => {
   // go to route taks#complete route
-    $.get(`/tasks/${taskId}/complete`)
-  // refresh page?
+    $.get(`/tasks/${taskId}/complete`, function(task){
+      const taskButton = buttonizeTask(task.name, task.id)
+      $('#completed-tasks').append(taskButton)
+    })
+
 }
 
 const editTask = (taskId) => {
