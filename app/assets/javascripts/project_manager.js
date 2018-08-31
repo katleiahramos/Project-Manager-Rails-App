@@ -206,6 +206,8 @@ const showTask = function (id) {
 
     const editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
 
+    const completeButton = `<button type="button" id="complete-task" class="btn btn-primary mx-2" data-task-id="${taskData.id}">Complete Task</button>`
+
 
     const task = new Task(name, description, formattedDueDate, user)
 
@@ -213,14 +215,21 @@ const showTask = function (id) {
 
     // const modal = $(`#task-${taskData.id}`)
     $('.modal-title').html(name)
-    $('.modal-body').html(taskHTML + editButton)
+    $('.modal-body').html(taskHTML + editButton + completeButton)
 
     $('#edit-task').on("click", function(){
       editTask($(this).data("taskId"));
+    })
 
+    $('#complete-task').on('click', function(){
+      completeTask($(this).data("taskId"))
     })
 
   })
+}
+
+const completeTask = (taskId) => {
+  // go to route taks#complete route
 }
 
 const editTask = (taskId) => {
