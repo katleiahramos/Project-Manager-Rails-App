@@ -68,9 +68,8 @@ class TasksController < ApplicationController
   end
 
   def complete
-    binding.pry
     @task.update(completed: true)
-    redirect_to projects_path
+    render json: @task
   end
 
   def destroy
