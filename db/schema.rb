@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2018_06_28_160039) do
     t.string "description"
     t.integer "user_id"
     t.integer "project_id"
-    t.boolean "competed", default: false
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
