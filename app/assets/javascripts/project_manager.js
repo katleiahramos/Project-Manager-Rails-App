@@ -230,6 +230,8 @@ const showTask = function (id) {
 
 const completeTask = (taskId) => {
   // go to route taks#complete route
+    $.get(`/tasks/${taskId}/complete`)
+  // refresh page?
 }
 
 const editTask = (taskId) => {

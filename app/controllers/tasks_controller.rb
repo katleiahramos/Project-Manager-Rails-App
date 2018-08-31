@@ -68,6 +68,7 @@ class TasksController < ApplicationController
   end
 
   def complete
+    binding.pry
     @task.update(completed: true)
     redirect_to projects_path
   end
