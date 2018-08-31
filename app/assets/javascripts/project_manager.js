@@ -294,9 +294,19 @@ const updateTask = (url, values) => {
   $.ajax({
     type: 'PATCH',
     url: url,
-    data: values
-  }).success(function(response){
-    showTask(response.id)
+    data: values,
+    success: function(response){
+      showTask(response.id)},
+    error: function(response){
+      $('.modal-body').html(response.responseText)
+
+      $('.edit_task').on('submit', function(event){
+        event.preventDefault();
+        const url = this.action;
+        const values = $(this).serialize();
+        updateTask(url, values);
+      })
+    }
   })
 }
 
