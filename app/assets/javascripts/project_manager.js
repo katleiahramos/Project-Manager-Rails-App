@@ -189,7 +189,7 @@ const projectTemplate = (projectId, projectName) => {
 
 const renderTasks = (projectId) => {
   $.get(`/projects/${projectId}`, function(projectData){
-    // should this be a for each?
+
     let tasksHTML = ""
     for(const i of projectData){
       if(i.completed == false){
@@ -211,7 +211,6 @@ const renderTasks = (projectId) => {
 const showTask = function (id) {
 
   $.get(`/tasks/${id}` ,function(taskData){
-    // {id: 2, due_date: "2018-07-12T00:00:00.000Z", description: "Create command line design", user_id: 3, project_id: 3, …}
     let user = ""
     let formattedDueDate = ""
     let description = ""
@@ -238,7 +237,7 @@ const showTask = function (id) {
 
     const taskHTML = task.format()
 
-    // const modal = $(`#task-${taskData.id}`)
+
     $('.modal-title').html(name)
     $('.modal-body').html(taskHTML + editButton + completeButton + deleteButton)
 
