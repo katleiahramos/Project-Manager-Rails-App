@@ -22,17 +22,13 @@ Rails.application.routes.draw do
   end
 
 
-
   get '/signout', to: 'sessions#destroy'
 
   get '/tasks/:id/complete', to: "tasks#complete"
 
-  #get 'tasks/:id/delete', to: "tasks#delete"
-
   get '/auth/facebook/callback' => 'sessions#create'
 
   get '/tasks/indexCompleted' => 'tasks#indexCompleted'
-  # get 'projects/:id/delete', to: "projects#delete"
 
   get '/users/most_projects', to: "users#most_projects"
 
