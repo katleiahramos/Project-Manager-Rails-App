@@ -19,6 +19,7 @@ class TasksController < ApplicationController
   end
 
   def indexCompleted
+    # use scope method to get only completed tasks
     @tasks = Task.completed_tasks
     render json: @tasks
   end
@@ -50,6 +51,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.save
+    # return JSON to append new task to dom
     render json: @task
   end
 
@@ -59,6 +61,7 @@ class TasksController < ApplicationController
 
   def show
     task = Task.find(params[:id])
+    # render JSON to append to DOM
     render json: task
   end
 
