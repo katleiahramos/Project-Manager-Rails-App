@@ -9,7 +9,7 @@ class Task < ApplicationRecord
 
   scope :completed_tasks, -> {where(completed: true)}
   scope :over_due, -> {where("due_date > ?", Date.today)}
-
+  scope :by_date_completed, ->  {order("date_completed DESC")}
 
   # custom validation
   def due_date_cannot_be_in_the_past

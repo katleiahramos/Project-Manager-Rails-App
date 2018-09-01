@@ -218,12 +218,13 @@ const renderTasks = (projectId) => {
 const showTask = function (id) {
 
   $.get(`/tasks/${id}` ,function(taskData){
+    const name = taskData.name
     let user = ""
     let formattedDueDate = ""
     let description = ""
     let editButton = ""
     let completeButton = ""
-    const name = taskData.name
+    let formattedDateCompleted = ""
 
     if (taskData.due_date){
       const dueDate = new Date(taskData.due_date)
@@ -231,7 +232,10 @@ const showTask = function (id) {
     }
     if (taskData.user) { user = taskData.user.username}
     if (taskData.description) {description = taskData.description}
+    if (taskData.date_completed !== null ) {
+      const dateCompleted = new Date(taskData.date_completed)
 
+      formattedDateCompleted = '<p>Date Completed: ' + dateCompleted.toDateString() + "<br>"}
     if (!taskData.completed){
     editButton = `<button type="button" id="edit-task" class="btn btn-primary" data-task-id="${taskData.id}">Edit Task</button>`
 
@@ -246,7 +250,7 @@ const showTask = function (id) {
 
 
     $('.modal-title').html(name)
-    $('.modal-body').html(taskHTML + editButton + completeButton + deleteButton)
+    $('.modal-body').html(taskHTML + formattedDateCompleted + editButton + completeButton + deleteButton)
 
     $('#edit-task').on("click", function(){
       editTask($(this).data("taskId"));

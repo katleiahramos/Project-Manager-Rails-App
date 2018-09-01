@@ -1,3 +1,5 @@
+require 'date'
+
 class TasksController < ApplicationController
   before_action :require_login
   before_action :set_task, only: [:edit, :update, :destroy, :complete]
@@ -75,7 +77,7 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task.update(completed: true)
+    @task.update(completed: true, date_completed: DateTime.now)
     render json: @task
   end
 
