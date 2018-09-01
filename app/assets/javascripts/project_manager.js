@@ -63,28 +63,9 @@ Task.prototype.format = function(){
   `
 }
 
-/////////////////////////////////////////////
+/////////////////// PROJECT JS //////////////////////////
 
-const renderCompletedTasks = () => {
-  // get all completed tasks
-  $.get('/tasks/indexCompleted', function(tasks){
 
-    let tasksHTML = ""
-    for(const task of tasks){
-      tasksHTML += buttonizeTask(task.name, task.id)
-    }
-
-    // append them to completed-tasks div
-    $('#completed-tasks').html(`<h4 class="text-light"> Completed Tasks</h4>` + tasksHTML)
-    // attachListeners
-    $(".task-more").on("click", function(){
-      const id = $(this).data("id");
-      showTask(id);
-    })
-
-  })
-
-}
 
 const createProject = function() {
   // show project form
@@ -186,6 +167,32 @@ const projectTemplate = (projectId, projectName) => {
 //     }
 //   })
 // }
+
+/////////////////////////// TASK JS ////////////////////////////////
+
+
+
+
+const renderCompletedTasks = () => {
+  // get all completed tasks
+  $.get('/tasks/indexCompleted', function(tasks){
+
+    let tasksHTML = ""
+    for(const task of tasks){
+      tasksHTML += buttonizeTask(task.name, task.id)
+    }
+
+    // append them to completed-tasks div
+    $('#completed-tasks').html(`<h4 class="text-light"> Completed Tasks</h4>` + tasksHTML)
+    // attachListeners
+    $(".task-more").on("click", function(){
+      const id = $(this).data("id");
+      showTask(id);
+    })
+
+  })
+
+}
 
 const renderTasks = (projectId) => {
   $.get(`/projects/${projectId}`, function(projectData){
