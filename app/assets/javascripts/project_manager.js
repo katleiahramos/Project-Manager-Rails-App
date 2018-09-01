@@ -195,7 +195,7 @@ const renderCompletedTasks = () => {
 }
 
 const renderTasks = (projectId) => {
-  $.get(`/projects/${projectId}`, function(projectData){
+  $.get(`/projects/${projectId}/tasks`, function(projectData){
 
     let tasksHTML = ""
     for(const i of projectData){
