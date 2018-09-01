@@ -7,8 +7,6 @@ Rails.application.routes.draw do
 
   root "static#welcome"
 
-  # root 'projects#index'
-
 
 
   resources :sessions

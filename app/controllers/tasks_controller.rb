@@ -5,7 +5,6 @@ class TasksController < ApplicationController
 
 
   def index
-
     if params[:user_id]
       if User.find(params[:user_id]) == current_user
         @user = User.find(params[:user_id])
