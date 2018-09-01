@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :email, :username, :password, presence: true
   validates :email, uniqueness: true
 
-
+  # scope method to return which user has the most project
   scope :most_projects, -> {joins(:projects).group(:user_id).order("COUNT(*) DESC").first}
 
 
