@@ -1,21 +1,20 @@
-$(document).ready(function() {
+$( function() {
   attachListeners();
   renderCompletedTasks();
 });
 
 const attachListeners = function() {
-  $(function () {
-    $(".task-more").on("click", function(){
+
+  $("#order-tasks").on("click", orderTasks)
+
+  $(".task-more").on("click", function(){
       const id = $(this).data("id");
       showTask(id);
-    })
   })
 
+
   $(function() {
-    $(".project-more").on("click", function(){
-      const projectId = $(this).data("projectId");
-      renderTasks(projectId);
-    })
+    $(".project-more").on("click", projectClick)
   })
 
   $(function () {
@@ -46,6 +45,10 @@ const attachListeners = function() {
 
 }
 
+function projectClick(){
+  const projectId = $(this).data("projectId");
+  renderTasks(projectId);
+}
 /////////////// JS Model Object //////////////
 
 function Task(name, description, dueDate, user) {
@@ -65,7 +68,39 @@ Task.prototype.format = function(){
 
 /////////////////// PROJECT JS //////////////////////////
 
+const orderTasks = () => {
+  $.get('/tasks/indexCompleted', function(tasks){
 
+    let tasksHTML = ""
+
+
+    tasks.sort(function(a, b) {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
+
+    for(const task of tasks){
+      tasksHTML += buttonizeTask(task.name, task.id)
+    }
+
+    // append them to completed-tasks div
+    $('#completed-tasks').html(`<h4 class="text-light"> Completed Tasks</h4>` + tasksHTML)
+    // attachListeners
+    $(".task-more").on("click", function(){
+      const id = $(this).data("id");
+      showTask(id);
+    })
+
+  })
+}
 
 const createProject = function() {
   // show project form
@@ -195,10 +230,10 @@ const renderCompletedTasks = () => {
 }
 
 const renderTasks = (projectId) => {
-  $.get(`/projects/${projectId}/tasks`, function(projectData){
+  $.get(`/projects/${projectId}`, function(projectData){
 
     let tasksHTML = ""
-    for(const i of projectData){
+    for(const i of projectData.tasks){
       if(i.completed == false){
       const name = i.name;
       const taskId = i.id;

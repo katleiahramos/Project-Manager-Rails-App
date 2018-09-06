@@ -13,8 +13,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @tasks = @project.tasks
-    render json: @tasks
+    # @tasks = @project.tasks
+    # render json: @tasks
+    render json: @project
   end
 
   def new
